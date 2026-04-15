@@ -233,6 +233,15 @@ export function initBot(): void {
     }
   });
 
+  // Set command menu
+  bot.setMyCommands([
+    { command: "checkprice", description: "Get current gold & silver rates" },
+    { command: "subscribe", description: "Subscribe to automatic price alerts" },
+    { command: "unsubscribe", description: "Stop receiving price alerts" },
+    { command: "status", description: "Check your subscription status" },
+    { command: "testnotify", description: "Send a test notification (Baseline/Connection check)" },
+  ]).catch(err => logger.error({ err }, "Failed to set bot commands"));
+
   bot.on("polling_error", (err) => {
     logger.error({ err }, "Telegram bot polling error");
   });
